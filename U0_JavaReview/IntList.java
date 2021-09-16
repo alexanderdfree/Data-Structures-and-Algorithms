@@ -59,6 +59,15 @@ public class IntList{
       }*/
       this.array[this.size] = value;
       this.size++;
+      int[] newArr = new int[this.array.length * 2];
+      if (this.size >= this.array.length){
+         for(int i = 0; i < this.array.length; i++){
+            newArr[i] = this.array[i];
+         }
+         this.array = newArr;
+      }
+      
+      
       //this.array = newArr;
    }
    public String toString(){
@@ -222,5 +231,134 @@ public class IntList{
          this.array[index] = value;
          this.size++;
       }
+      int[] newArr = new int[this.array.length * 2];
+      if (this.size >= this.array.length){
+         for(int i = 0; i < this.array.length; i++){
+            newArr[i] = this.array[i];
+         }
+         this.array = newArr;
+      }
+      
+      
    }
+    public void set(int index, int value){
+      /*Set the value at index. Overwrite the previous value.
+      Index must be within the list
+      Input:
+         int index: the index whose value we want to set
+         int value: the new value to put at index
+         this: an IntList object
+      Output: None
+      Side Effects: the value at index is now the given value
+      Ex.
+      IntList l = new IntList();
+      l.add(5);
+      l.add(-3);
+      l.add(2);
+      l.toString() -> [5, -3, 2]
+      l.set(1, 8);
+      l.toString() -> [5, 8, 2]
+      l.set(2, -1);
+      l.toString() -> [5, 8, -1]
+      */
+      this.array[index] = value;
+   }
+   public void swap(int index1, int index2){
+      /*Swap the values at index1 and index2.
+      Both indices must be in the list.
+      Input:
+         int index1: the index of the first value
+         int index2: the index of the second value
+         this: an IntList object
+      Output: None
+      Side Effects: the values at index1 and index2
+      have swapped positions
+      Ex.
+      IntList l = new IntList()
+      l.add(7);
+      l.add(3);
+      l.add(5);
+      l.toString() -> [7, 3, 5]
+      l.swap(0, 2);
+      l.toString() -> [5, 3, 7]
+      */
+      int i = this.array[index1];
+      this.array[index1] = this.array[index2];
+      this.array[index2] = i;
+   }
+   public boolean contains(int value){
+      /*Checks if this list contains value
+      Input:
+         int value: the value to check for
+         this: an IntList object
+      Output:
+         return: whether the value is in the list
+      Ex.
+      IntList l = new IntList();
+      l.add(4);
+      l.add(2);
+      l.add(-1);
+      l.toString() -> [4, 2, -1]
+      l.contains(2) -> true
+      l.contains(-1) -> true
+      l.contains(0) -> false
+      */
+      for (int i = 0; i < this.array.length; i++){
+         if (this.array[i] == value){
+            return true;
+         }
+      }
+      return false;
+   }
+   public int indexOf(int value){
+      /*Return the index of the first occurence of value
+      in this list, or -1 if the value is not in the list
+      Input:
+         int value: the value to search for
+         this: an IntList object
+      Output:
+         return: the index of the first occurence of value
+         or -1 if the value is not in this list
+      Ex.
+      IntList l = new IntList();
+      l.add(4);
+      l.add(-7);
+      l.add(8);
+      l.add(4);
+      l.toString() -> [4, -7, 8, 4]
+      l.indexOf(4) -> 0
+      l.indexOf(8) -> 2
+      l.indexOf(5) -> -1
+      */
+      for (int i = 0; i < this.array.length; i++){
+         if (this.array[i] == value){
+            return i;
+         }
+      }
+      return -1;
+   }
+   public int[] toArray(){
+      /*Copy the contents of this list to an array
+      Input:
+         this: an IntList object
+      Output:
+         return: a new int[] containing this list's contents
+      Ex.
+      IntList l = new IntList();
+      l.add(5);
+      l.add(-1);
+      l.add(9);
+      l.toString() -> [5, -1, 9]
+      int[] a = l.toArray()
+      a[0] -> 5
+      a[1] -> -1
+      a[2] -> 9
+      */
+      int[] newArr = new int[this.size];
+      for (int i = 0; i < this.size; i++){
+         newArr[i] = this.array[i];
+      }
+      return newArr;
+   }
+   
 }
