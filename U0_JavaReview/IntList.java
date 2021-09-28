@@ -150,17 +150,17 @@ public class IntList{
       l.remove(0) -> 4
       l.toString() -> [8, 2]
       */
-      int old = this.array[index];
-      
+      int[] oldArr = this.toArray();
       // int[] newArr = new int[this.array.length];
       for (int i = this.size-1; i > index; i--){
-         this.array[i-1] = this.array[i];
+         //final int x = this.array[i];
+         this.array[i-1] = oldArr[i];
       }
       
       this.size--;
       //this.array = newArr;
       
-      return old;
+      return oldArr[index];
    }
    public String toStringDebug(){
       /*Return a String representing this list, including the
@@ -360,5 +360,148 @@ public class IntList{
       }
       return newArr;
    }
+   public void selectionSort(){
+      /*Sort the contents of this list in ascending order
+      Input:
+         this: an IntList object
+      Output: none
+      Side Effects: the contents of this list are now sorted in 
+                    ascending order
+      Ex.
+      IntList l = new IntList();
+      l.add(4);
+      l.add(-1);
+      l.add(5);
+      l.add(2);
+      l.toString() -> [4, -1, 5, 2]
+      l.selectionSort();
+      l.toString() -> [-1, 2, 4, 5]*/
+      
+      
+      //IntList sorted = new IntList();
+      /*int[] sorted = new int[this.array.length];
+      //int[] unsorted = this.array.toArray();
+      StdOut.println("current arr: " + Arrays.toString(this.array));
+      for (int i = 0; i < this.size; i++){
+         int[] smallArr = Arrays.copyOf(IntList.smallest(this.array, this.size), 2);
+         StdOut.println("smallarr: " + Arrays.toString(smallArr));
+         int xyz = smallArr[0];
+         sorted[i] = xyz;
+         
+         //StdOut.println(this.toString());
+         int staticindex = smallArr[1];
+         StdOut.println("static index: " + staticindex);
+         this.remove(staticindex); //error here, need to use proper index
+         //int current = this.unsorted[i];
+         //sorted.set(i, );
+         StdOut.println("current arr: " + Arrays.toString(this.array));
+         StdOut.println("sorted: " + Arrays.toString(sorted));
+      }
+      StdOut.println("sorted: " + Arrays.toString(sorted));
+      this.array = sorted;
+      StdOut.println("current arr: " + Arrays.toString(this.array));
+      //this.sorted.add() = c
+      /*for (int i = 0; i < this.size; i++){
+         //int current = this.unsorted[i];
+         //sorted.set(i, );
+         //this
+      }*/
+      
+      //int[] sorted = new int[this.array.length];
+      for (int i = 0; i < this.size; i++){
+         int[] currentSmall = Arrays.copyOf(IntList.smallest(this.toArray(), i), 2);
+         //StdOut.println(currentSmall[0]);
+         
+         /*if (this.size-1 == i){
+            if()
+         }
+         else{*/
+         this.swap(i, currentSmall[1]);
+         //}
+         if (i == this.size-1){
+            
+         }
+      }
+      //StdOut.println("current arr: " + Arrays.toString(this.array));
+      this.add(this.array[0]);
+      //StdOut.println("current arr: " + Arrays.toString(this.array));
+      this.remove(0);
+      //StdOut.println("current arr: " + Arrays.toString(this.array));
+      //this.array = sorted;
+      
+      
+      
+   }
+   public static int[] smallest(int[] Oarr, int st){
+      
+      int[] arr = Arrays.copyOf(Oarr, Oarr.length);
+      int currentSmall = arr[0];
+      int index = 0;
+      for(int i = st; i < arr.length; i++){
+         if (arr[i] < currentSmall){
+            currentSmall = arr[i];
+            index = i;
+         }
+      }
+      int[] x = {currentSmall, index};
+      return x;
+   }
+      
+   //}
+   public void insertionSort(){
+      /*Sort the contents of this list in ascending order
+      Input:
+         this: an IntList object
+      Output: None
+      Side Effects: this list is now sorted in ascending order
+      Ex.
+      IntList l = new IntList();
+      l.add(4);
+      l.add(-1);
+      l.add(5);
+      l.add(2);
+      l.toString() -> [4, -1, 5, 2]
+      l.insertionSort();
+      l.toString() -> [-1, 2, 4, 5]
+      */
+      int[] sorted = new int[this.size];
+      //int[] unsorted = this.array;
+      for(int i = 0; i < this.size; i++){
+         //StdOut.println(Arrays.toString(this.array));
+         int current = this.array[i];
+         int greaterThanCounter = 0;
+         int equalsCounter = 0;
+         for(int x = 0; x < this.size; x++){
+            //StdOut.println("x: " + x);
+            //StdOut.println("this array x: " + this.array[x]);
+            if (current == this.array[x]){
+               equalsCounter++;
+            }
+            else if (current > this.array[x]){
+               greaterThanCounter++;
+               //StdOut.println(current + " compared to " + this.array[x] + " - result is " + (current > this.array[x]));
+            }
+         }
+         //StdOut.println("counter: " + greaterThanCounter);
+         sorted[greaterThanCounter] = current;
+         for (int z = 0; z < equalsCounter; z++){
+            sorted[greaterThanCounter+z] = current;
+         }
+         
+         //StdOut.println(Arrays.toString(sorted));
+      }
+      this.array = sorted;
+      
+   }
+   public static void main(String[] args){
+      IntList l = new IntList();
+      l.add(4);
+      l.add(-1);
+      l.add(5);
+      l.add(2);
+      StdOut.println(l.toString());
+      l.insertionSort();
+      StdOut.println(l.toString());
    
+   } 
 }
