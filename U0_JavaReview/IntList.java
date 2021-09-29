@@ -422,12 +422,13 @@ public class IntList{
          else{*/
          
          //make temp variables
-         int currentSmall = arr[i]; //set equal to current int at loop point
+         //int currentSmall = arr[i]; //set equal to current int at for loop index
          int currentIndex = i; //start at i because it should never sort through the first part (already sorted)
+         
          //find smallest (wrote other method for this but it wasn't working well so i scrapped it)
-         for(int x = i; x < arr.length; x++){
-            if (arr[x] < currentSmall){
-               currentSmall = arr[x];
+         for(int x = i; x < this.size; x++){
+            if (arr[x] < arr[i]/*more efficient than creating currentsmall*/){
+               //currentSmall = arr[x];
                currentIndex = x;
                
             }
@@ -512,10 +513,17 @@ public class IntList{
          //StdOut.println(Arrays.toString(sorted));
       }
       this.array = sorted;*/
+      
+      //for loop, starts at 1 because out of bounds error (can't go below 0)
       for(int i = 1; i < this.size; i++){
-         int arr = this.array[i];
+         //creates int at loop index (deleted to save memory)
+            //int arr = this.array[i];
+            
+         //loops at index down and swaps if the number with the larger x index is smaller
          for (int x = i; x > 0; x--){
+            //if the 2nd is bigger than the 1st
             if (this.array[x] < this.array[x-1]){
+               //swap them
                this.swap(x, x-1);
             }
          }
