@@ -408,24 +408,38 @@ public class IntList{
       }*/
       
       //int[] sorted = new int[this.array.length];
-      for (int i = 0; i < this.size; i++){
-         int[] currentSmall = Arrays.copyOf(IntList.smallest(this.toArray(), i), 2);
+      int[] arr = Arrays.copyOf(this.toArray(), this.toArray().length);
+      for (int i = 0; i < this.size-1; i++){
+         //int[] currentSmall = IntList.smallest(this.toArray(), i);
          //StdOut.println(currentSmall[0]);
          
          /*if (this.size-1 == i){
             if()
          }
          else{*/
-         this.swap(i, currentSmall[1]);
-         //}
-         if (i == this.size-1){
+         
+         int currentSmall = arr[i];
+         int index = 0;
+         //find smallest
+         for(int x = i; x < arr.length; x++){
+            if (arr[x] < currentSmall){
+               currentSmall = arr[x];
+               index = x;
+               
+            }
             
          }
+         StdOut.println("small: " + currentSmall + " index: " + index);
+         this.swap(i, index);
+         //}
+         /*if (i == this.size-1){
+            
+         }*/
       }
       //StdOut.println("current arr: " + Arrays.toString(this.array));
-      this.add(this.array[0]);
+      //this.add(this.array[0]);
       //StdOut.println("current arr: " + Arrays.toString(this.array));
-      this.remove(0);
+      //this.remove(0);
       //StdOut.println("current arr: " + Arrays.toString(this.array));
       //this.array = sorted;
       
