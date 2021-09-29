@@ -411,8 +411,9 @@ public class IntList{
       
       //loops thru the array, but not the last one since it should always be the biggest by the end
       for (int i = 0; i < this.size-1; i++){
-         //make copied array
+         //make copied array (i was having issues with this.array updating dynamically)
          int[] arr = Arrays.copyOf(this.toArray(), this.size);
+         
          //int[] currentSmall = IntList.smallest(this.toArray(), i);
          //StdOut.println(currentSmall[0]);
          
