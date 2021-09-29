@@ -412,7 +412,7 @@ public class IntList{
       //loops thru the array, but not the last one since it should always be the biggest by the end
       for (int i = 0; i < this.size-1; i++){
          //make copied array
-         int[] arr = Arrays.copyOf(this.toArray(), this.toArray().length);
+         int[] arr = Arrays.copyOf(this.toArray(), this.size);
          //int[] currentSmall = IntList.smallest(this.toArray(), i);
          //StdOut.println(currentSmall[0]);
          
@@ -422,8 +422,8 @@ public class IntList{
          else{*/
          
          //make temp variables
-         int currentSmall = arr[i];
-         int currentIndex = i;
+         int currentSmall = arr[i]; //set equal to current int at loop point
+         int currentIndex = i; //start at i because it should never sort through the first part (already sorted)
          //find smallest (wrote other method for this but it wasn't working well so i scrapped it)
          for(int x = i; x < arr.length; x++){
             if (arr[x] < currentSmall){
@@ -485,7 +485,7 @@ public class IntList{
       l.insertionSort();
       l.toString() -> [-1, 2, 4, 5]
       */
-      int[] sorted = new int[this.size];
+      /*int[] sorted = new int[this.size];
       //int[] unsorted = this.array;
       for(int i = 0; i < this.size; i++){
          //StdOut.println(Arrays.toString(this.array));
@@ -511,18 +511,26 @@ public class IntList{
          
          //StdOut.println(Arrays.toString(sorted));
       }
-      this.array = sorted;
+      this.array = sorted;*/
+      for(int i = 1; i < this.size; i++){
+         int arr = this.array[i];
+         for (int x = i; x > 0; x--){
+            if (this.array[x] < this.array[x-1]){
+               this.swap(x, x-1);
+            }
+         }
+      }
       
    }
    public static void main(String[] args){
-      IntList l = new IntList();
+      /*IntList l = new IntList();
       l.add(4);
       l.add(-1);
       l.add(5);
       l.add(2);
       StdOut.println(l.toString());
       l.insertionSort();
-      StdOut.println(l.toString());
+      StdOut.println(l.toString());*/
    
    } 
 }
