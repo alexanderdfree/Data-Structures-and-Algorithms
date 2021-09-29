@@ -408,8 +408,11 @@ public class IntList{
       }*/
       
       //int[] sorted = new int[this.array.length];
-      int[] arr = Arrays.copyOf(this.toArray(), this.toArray().length);
+      
+      //loops thru the array, but not the last one since it should always be the biggest by the end
       for (int i = 0; i < this.size-1; i++){
+         //make copied array
+         int[] arr = Arrays.copyOf(this.toArray(), this.toArray().length);
          //int[] currentSmall = IntList.smallest(this.toArray(), i);
          //StdOut.println(currentSmall[0]);
          
@@ -418,19 +421,23 @@ public class IntList{
          }
          else{*/
          
+         //make temp variables
          int currentSmall = arr[i];
-         int index = 0;
-         //find smallest
+         int currentIndex = i;
+         //find smallest (wrote other method for this but it wasn't working well so i scrapped it)
          for(int x = i; x < arr.length; x++){
             if (arr[x] < currentSmall){
                currentSmall = arr[x];
-               index = x;
+               currentIndex = x;
                
             }
             
          }
-         StdOut.println("small: " + currentSmall + " index: " + index);
-         this.swap(i, index);
+         //StdOut.println("small: " + currentSmall + " index: " + currentIndex);
+         
+         //swap the new smallest one with arr[i]
+         this.swap(currentIndex, i);
+         
          //}
          /*if (i == this.size-1){
             
