@@ -412,7 +412,7 @@ public class IntList{
       //loops thru the array, but not the last one since it should always be the biggest by the end
       for (int i = 0; i < this.size-1; i++){
          //make copied array (i was having issues with this.array updating dynamically)
-         int[] arr = Arrays.copyOf(this.toArray(), this.size);
+         //int[] arr = Arrays.copyOf(this.toArray(), this.size);
          
          //int[] currentSmall = IntList.smallest(this.toArray(), i);
          //StdOut.println(currentSmall[0]);
@@ -428,7 +428,7 @@ public class IntList{
          
          //find smallest (wrote other method for this but it wasn't working well so i scrapped it)
          for(int x = i; x < this.size; x++){
-            if (arr[x] < arr[i]/*more efficient than creating currentsmall*/){
+            if (this.array[x] < this.array[i]){/*more efficient than creating currentsmall*/
                //currentSmall = arr[x];
                currentIndex = x;
                
