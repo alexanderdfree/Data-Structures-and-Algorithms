@@ -109,8 +109,8 @@ public class MergeSort{
          //unsorted.get(i);
       }
       
-      unsorted1.insertionSort();
-      unsorted2.insertionSort();
+      unsorted1 = MergeSort.sort(unsorted1);
+      unsorted2 = MergeSort.sort(unsorted2);
       return MergeSort.merge(unsorted1, unsorted2);
    }
    public static void main(String args[]){
