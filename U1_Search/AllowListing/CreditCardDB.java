@@ -62,13 +62,13 @@ public class CreditCardDB{
       int upper = this.accounts.size();
       int lower = 0;
       boolean found = false;
-      while (lower < upper){
+      while (lower <= upper){
          middle = (upper + lower)/2;
          //int middleInt = middle;
          Account midAcc = (Account)this.accounts.get(middle);
          
          long midNum = midAcc.getAccountNum();
-         StdOut.println("MIDNUM: " + midNum);
+         //StdOut.println("MIDNUM: " + midNum);
          if (accountNum > midNum){
             lower = middle+1;
          }
@@ -78,7 +78,7 @@ public class CreditCardDB{
          else{
             return midAcc;
          }
-         StdOut.println("MIDDLE: " + middle);
+         //StdOut.println("MIDDLE: " + middle);
       }
       return null;
    }      
