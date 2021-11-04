@@ -20,13 +20,21 @@ public class CreditCardDB{
          pos++;
       }*/
       long num1 = a.getAccountNum();
-      for (int i = 0; i < this.accounts.size(); i++){
+      boolean max = false;
+      int i = 0;
+      while (max == false && i < this.accounts.size()){
+      //for (int i = 0; i < this.accounts.size(); i++){
          Account acc = (Account)this.accounts.get(pos);
          long num = acc.getAccountNum();
          if (num1 > num){
             pos = i;
          }
+         else{
+            max = true;
+         }
+         i++;
       }
+      
       this.accounts.add(pos, a);
    }
    
