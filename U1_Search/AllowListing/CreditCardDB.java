@@ -69,19 +69,32 @@ public class CreditCardDB{
       int middle;
       int upper = this.accounts.size()-1;
       int lower = 0;
+      double test = (upper + lower)/2;
       //boolean found = false;
-      while (lower < upper){
+      while (upper - lower > 1){
          middle = (upper + lower)/2;
+         test = (upper + lower)/2;
          //int middleInt = middle;
          Account midAcc = (Account)this.accounts.get(middle);
+         Account lowAcc = (Account)this.accounts.get(lower);
+         Account highAcc = (Account)this.accounts.get(upper);
          
          long midNum = midAcc.getAccountNum();
+         long lowNum = lowAcc.getAccountNum();
+         long highNum = highAcc.getAccountNum();
          //StdOut.println("MIDNUM: " + midNum);
+         
+         if (accountNum == highNum){
+            return highAcc;
+         }
+         else if (accountNum == lowNum){
+            return lowAcc;
+         }
          if (accountNum > midNum){
-            lower = middle+1;
+            lower = middle;
          }
          else if (accountNum < midNum){
-            upper = middle-1;
+            upper = middle;
          }
          else{
             return midAcc;
@@ -146,7 +159,7 @@ public class CreditCardDB{
          db.addAccount(a);
       }
       accountLoad.close();
-      
+      //StdOut.println(accountLoad.toString());
       //load and process the attempted charges
       In chargeLoad = new In(chargeFile);       //load the data in chargeFile
       while(chargeLoad.isEmpty() == false){
