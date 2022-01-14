@@ -105,18 +105,52 @@ public class LList{
       l.remove(0) -> ERROR (possibly)
       */
       Object placeholder = this.start.getData();
+      
       LNode x = this.start;
       LNode z;
       if (index == 0){
-         this.start = null;
+         //this.start = null;
+         this.start = this.start.getNext();
          return placeholder;
       }
+      /*if (index == 1){
+         Object placeholder2 = this.start.getNext().getData();
+         this.start.setNext(this.start.getNext().getNext());
+         LNode a = this.start.getNext();
+         a = null;
+         
+         return placeholder2;
+      }*/
       
       for (int i = 0; i < index-1; i++){
          x = x.getNext();
-         //StdOut.println(x);
+         if (x.getNext() != null){
+            StdOut.println(x.getData());
+         }
+      }
+
+      if (x == null){
+         return "ERROR";
+      }
+      else if (x.getNext() == null){
+         Object save = x.getData();
+         return save;
+      }
+      else{
+         Object a = x.getNext().getData();
+         x.setNext(x.getNext().getNext());
+         return a;
       }
       
+      //
+      
+      
+      //
+      
+      
+      
+      
+      /*
       Object save = x.getData();
       
       
@@ -132,7 +166,7 @@ public class LList{
       }
       else{
          return save;
-      }
+      }*/
       
       //if (z)
       
@@ -161,7 +195,7 @@ public class LList{
       l.toString() -> "2 -> 3 -> 1 -> null"
       l.insert(4, 4) -> ERROR (possibly)
       */
-      LNode newNode = new LNode(o); //put data in a node
+      /*LNode newNode = new LNode(o); //put data in a node
       LNode x = this.start;
       LNode a = this.start;
       
@@ -170,11 +204,12 @@ public class LList{
          this.start = newNode;
       }
       if (index == 0){
-         //newNode.setNext(this.start);
+         LNode original = this.start;
+         newNode.setNext(original);
          this.start = newNode;
       }
       else{//otherwise, find the end of the list
-         for (int i = 0; i < index-1; i++){
+         for (int i = 0; i < index; i++){
             x = x.getNext();
             //StdOut.println(x);
          }
@@ -188,9 +223,38 @@ public class LList{
          else{
             LNode y = x.getNext();
             newNode.setNext(y);
-            //x.setNext(newNode);
+            x.setNext(newNode);
          }
+      }*/
+      /*LNode newNode = new LNode(o); //put data in a node
+      if(this.start == null){//special case for first item in list
+         this.start = newNode;
       }
+      else{//otherwise, find the end of the list
+         LNode end = this.start;
+         int i = 0;
+         while(i < index-1){
+            end = end.getNext();
+            i++;
+         }
+         LNode after = end.getNext();
+         newNode.setNext(after);
+         end.setNext(newNode);//tack the new node onto the end
+         
+      }*/
+      LNode newNode = new LNode(o);
+      if(this.start == null){//special case for first item in list
+         this.start = newNode;
+      }
+      LNode x = this.start;
+      for (int i = 0; i < index-1; i++){
+         x = x.getNext();
+         //StdOut.println(x);
+      }
+      newNode.setNext(x.getNext());
+      x.setNext(null);
+      this.add(o);
+      
    }
 
 
