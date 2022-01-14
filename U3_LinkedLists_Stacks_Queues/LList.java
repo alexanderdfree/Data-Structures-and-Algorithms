@@ -107,7 +107,7 @@ public class LList{
       Object placeholder = this.start.getData();
       
       LNode x = this.start;
-      LNode z;
+      //LNode z;
       if (index == 0){
          //this.start = null;
          this.start = this.start.getNext();
@@ -124,9 +124,9 @@ public class LList{
       
       for (int i = 0; i < index-1; i++){
          x = x.getNext();
-         if (x.getNext() != null){
+         /*if (x.getNext() != null){
             StdOut.println(x.getData());
-         }
+         }*/
       }
 
       if (x == null){
@@ -134,11 +134,13 @@ public class LList{
       }
       else if (x.getNext() == null){
          Object save = x.getData();
-         return save;
+         return save; // should be null i think
       }
       else{
-         Object a = x.getNext().getData();
-         x.setNext(x.getNext().getNext());
+         LNode y = x.getNext(); // node to delete
+         LNode z = y.getNext(); // node after
+         Object a = y.getData(); // obj
+         x.setNext(z); // link (skip over y)
          return a;
       }
       
