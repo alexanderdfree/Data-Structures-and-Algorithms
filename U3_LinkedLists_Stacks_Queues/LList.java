@@ -243,22 +243,40 @@ public class LList{
          
       }*/
       LNode newNode = new LNode(o);
+      
+      
+      LNode x = this.start;
+      
       if(this.start == null){//special case for first item in list
          this.start = newNode;
       }
-      LNode x = this.start;
-      for (int i = 0; i < index; i++){
-         x = x.getNext();
-         //StdOut.println(x);
-      }
-      if(x.getNext() == null){
-         this.add(o);
-      }
-      LNode after = new LNode(x.getNext().getData());
-      after.setNext(x.getNext().getNext());
-      x.setNext(newNode);
-      newNode.setNext(after);
       
+      else if(index == 0){
+         LNode test = new LNode(this.start.getData());
+         test.setNext(this.start.getNext());
+         newNode.setNext(test);
+         this.start = newNode;
+         //this.start = this.start.getNext();
+         //
+         
+      }
+      
+      else{
+         for (int i = 0; i < index-1; i++){
+            x = x.getNext();
+            //StdOut.println(x);
+         }
+         if(x.getNext() == null){
+            this.add(o);
+         
+         }
+         else{
+            LNode after = new LNode(x.getNext().getData());
+            after.setNext(x.getNext().getNext());
+            x.setNext(newNode);
+            newNode.setNext(after);
+         }
+      }
       
       
    }
