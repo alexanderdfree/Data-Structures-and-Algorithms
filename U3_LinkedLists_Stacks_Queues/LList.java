@@ -247,13 +247,19 @@ public class LList{
          this.start = newNode;
       }
       LNode x = this.start;
-      for (int i = 0; i < index-1; i++){
+      for (int i = 0; i < index; i++){
          x = x.getNext();
          //StdOut.println(x);
       }
-      newNode.setNext(x.getNext());
-      x.setNext(null);
-      this.add(o);
+      if(x.getNext() == null){
+         this.add(o);
+      }
+      LNode after = new LNode(x.getNext().getData());
+      after.setNext(x.getNext().getNext());
+      x.setNext(newNode);
+      newNode.setNext(after);
+      
+      
       
    }
 
