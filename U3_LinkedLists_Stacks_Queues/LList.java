@@ -394,15 +394,52 @@ public class LList{
             }
             LNode copy1 = new LNode(node1.getNext().getData());
             LNode copy2 = new LNode(node2.getNext().getData());
+            LNode start = new LNode(this.start.getData());
             if (index1 > index2){
-               copy1.setNext(copy2);
-               copy2.setNext(node1.getNext());
-               node2.setNext(copy1);
+               //node2.setNext(node1.getNext());
+               //node1.setNext(node2);
+               if (index2 == 0){
+                  if (node1.getNext().getNext() != null){
+                     start.setNext(node1.getNext().getNext());
+                  }
+                  
+                  //LNode copy2 = new LNode(node2.getNext().getData());
+                  
+                  copy1.setNext(start);
+                  this.start = copy1;
+                  
+                  
+                  node1.setNext(start);
+               }
+               else{
+                  copy1.setNext(copy2);
+                  copy2.setNext(node1.getNext().getNext());
+                  node2.setNext(copy1);
+               }
+               
             }
             else{
-               copy2.setNext(copy1);
+               /*copy2.setNext(copy1);
                copy1.setNext(node2.getNext());
-               node1.setNext(copy2);
+               node1.setNext(copy2);*/
+               if (index1 == 0){
+                  if (node2.getNext().getNext() != null){
+                     start.setNext(node2.getNext().getNext());
+                  }
+                  
+                  //LNode copy2 = new LNode(node2.getNext().getData());
+                  
+                  copy2.setNext(start);
+                  this.start = copy2;
+                  
+                  
+                  node2.setNext(start);
+               }
+               else{
+                  copy2.setNext(copy1);
+                  copy1.setNext(node2.getNext().getNext());
+                  node1.setNext(copy2);
+               }
             }
             
          }
