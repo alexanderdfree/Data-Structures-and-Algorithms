@@ -87,12 +87,16 @@ public class AQueue{
       q.remove() -> 1
       q.remove() -> 2
       */
+      Object save = this.contents[0];
       if (this.size == 0) return null;
-      for (int i = 0; i < this.size; i++){
-         this.contents[i] = this.contents[i+1];
+      if (this.size == 1){
+         this.contents[0] = null;
+      }
+      for (int i = 1; i < this.size; i++){
+         this.contents[i-1] = this.contents[i];
       }
       this.size--;
-      return this.contents[0];
+      return save;
    }
    public boolean isEmpty(){
       /*
