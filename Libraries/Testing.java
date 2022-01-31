@@ -3,7 +3,7 @@ A class for implementing simple test cases in other classes
 
 Author: Owen Coyle
 
-Last Updated: 10/15/2019
+Last Updated: 10/21/2020
 */
 
 public class Testing{
@@ -25,7 +25,15 @@ public class Testing{
       testEquals("Test 2", true, true) -> "Test 2: OK"
       testEquals("Test 3", 1, 1.0) -> "Test 3: result 1, expected 1.0"
       */
-      if(result.equals(expected)){
+      if((result == null) || (expected == null)){
+         if((result == null) && (expected == null)){
+            System.out.println(caseID + ": OK");
+         }
+         else{
+            System.out.println(caseID + ": result: " + result + ", expected: " + expected);
+         }
+      }
+      else if(result.equals(expected)){
          System.out.println(caseID + ": OK");
       }
       else{

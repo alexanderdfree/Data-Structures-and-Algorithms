@@ -509,6 +509,105 @@ public class LList{
          }
       }
    }
+   public int size(){
+      /*
+      Return the number of items in the list,
+      a.k.a. the size of the list.
+      Inputs:
+         this: the list whose size you want to check
+      Results:
+         return: the number of items in the list
+      Ex.
+      LList l = new LList()
+      l.size() -> 0
+      l.add(1)
+      l.size() -> 1
+      l.add(2)
+      l.size() -> 2
+      l.add(3)
+      l.size() -> 3
+      l.remove(0)
+      l.size() -> 2
+      */
+      int counter = 0;
+      LNode x = this.start;
+      
+      while (x != null){
+         x = x.getNext();
+         counter++;
+         //StdOut.println(x);
+      }
+      return counter;
+   }
+   public boolean contains(Object o){
+      /*
+      Check if this list contains o. Compares
+      by value, not by memory location, i.e. uses
+      .equals(), not == .
+      Inputs:
+         this: the list to search through
+         o: the Object to search for
+      Results:
+         return: true if the Object exists in the list.
+                 false otherwise
+      Ex.
+      LList l = new LList()
+      l.add(1)
+      l.add(2)
+      l.add(3)
+      l.contains(1) -> true
+      l.contains(2) -> true
+      l.contains(3) -> true
+      l.contains(4) -> false
+      l.contains("3") -> false
+      */
+      LNode x = this.start;
+      
+      while (x != null){
+         
+         if (x.getData().equals(o)){
+            return true;
+         }
+         x = x.getNext();
+      }
+      return false;
+   }
+   public int indexOf(Object o){
+      /*
+      Find the index of the given value in the list.
+      Checks for equality by value, not by memory location,
+      i.e. uses .equals() not == . If the same value is
+      at multiple indices, return the smallest one. If the
+      value is not in the list, return -1.
+      Inputs:
+         this: the list to search through
+         o: the value to search for
+      Results:
+         return: the smallest index with a matching value
+                 or -1 if the value is not in the list
+      Ex.
+      LList l = new LList()
+      l.add(3)
+      l.add(1)
+      l.add(3)
+      l.indexOf(3) -> 0
+      l.indexOf(1) -> 1
+      l.indexOf(2) -> -1
+      */
+      LNode x = this.start;
+      int counter = 0;
+      
+      while (x != null){
+         if (x.getData().equals(o)){
+            return counter;
+         }
+         
+         x = x.getNext();
+         
+         counter++;
+      }
+      return -1;
+   }
 
 
 }
