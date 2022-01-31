@@ -87,7 +87,7 @@ public class LStack{
       s.pop() -> null
       */
       if (this.top == null) return null;
-      LNode save = this.top;
+      Object save = this.top.getData();
       this.top = this.top.getNext();
       return save;
    }
@@ -136,7 +136,7 @@ public class LStack{
       if (this.top == null) return 0;
       
       LNode x = this.top;
-      int i = 0;
+      int i = 1;
       while (x.getNext() != null){
          x = x.getNext();
          i++;
