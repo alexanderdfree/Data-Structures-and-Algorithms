@@ -4,12 +4,14 @@ A minimal stack implementation using linked nodes as storage
 
 public class LStack{
    private LNode top; //the top-most item in the stack
+   private int size;
    
    public LStack(){
       /*
       Constructor. Initialize an empty stack.
       */
       this.top = null;
+      this.size = 0;
    }
    public Object peek(){
       /*
@@ -56,6 +58,7 @@ public class LStack{
       LNode newNode = new LNode(o);
       newNode.setNext(this.top);
       this.top = newNode;
+      this.size++;
    }
    public Object pop(){
       /*
@@ -89,6 +92,7 @@ public class LStack{
       if (this.top == null) return null;
       Object save = this.top.getData();
       this.top = this.top.getNext();
+      this.size--;
       return save;
    }
    public boolean isEmpty(){
@@ -133,7 +137,8 @@ public class LStack{
       s.pop()
       s.size() -> 0
       */
-      if (this.top == null) return 0;
+      
+      /*if (this.top == null) return 0;
       
       LNode x = this.top;
       int i = 1;
@@ -141,7 +146,8 @@ public class LStack{
          x = x.getNext();
          i++;
       }
-      return i;
+      return i;*/
+      return this.size;
    }
    
 }

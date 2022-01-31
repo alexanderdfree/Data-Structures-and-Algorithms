@@ -4,12 +4,16 @@ A minimal queue implementation using linked nodes
 
 public class LQueue{
    LNode next; //the next item up in the queue
+   LNode last;
+   int size;
    
    public LQueue(){
       /*
       Constructor. Initialize a new empty queue
       */
       this.next = null;
+      this.size = 0;
+      this.last = null;
    }
    
    public Object peek(){
@@ -58,9 +62,12 @@ public class LQueue{
       q.peek() -> 1
       */
       LNode newNode = new LNode(o);
+      this.size++;
+      
       //add to the end of the queue
       if(this.next == null){
          this.next = newNode;
+         this.last = this.next;
       }
       else{
          LNode end = this.next;
@@ -68,7 +75,9 @@ public class LQueue{
             end = end.getNext();
          }
          end.setNext(newNode);
+         this.last = end;
       }
+      
    }
    
    public Object remove(){
@@ -89,12 +98,14 @@ public class LQueue{
       q.remove() -> 1
       q.remove() -> 2
       */
+      
       if(this.next == null){
          return null;
       }
       else{
          Object o = this.next.getData();
          this.next = this.next.getNext();
+         this.size--;
          return o;
       }
    }
@@ -142,13 +153,15 @@ public class LQueue{
       q.remove()
       q.size() -> 0
       */
-      int n = 0;
+      
+      /*int n = 0;
       LNode check = this.next;
       while(check != null){
          n++;
          check = check.getNext();
       }
-      return n;
+      return n;*/
+      return this.size;
    }
    
    
