@@ -65,7 +65,8 @@ public class LQueue{
       this.size++;
       
       //add to the end of the queue
-      if(this.next == null){
+      
+      /*if(this.next == null){
          this.next = newNode;
          this.last = this.next;
       }
@@ -76,8 +77,16 @@ public class LQueue{
          }
          end.setNext(newNode);
          this.last = end;
+      }*/
+      if (this.next == null){
+         this.next = newNode;
+         
       }
-      
+      else{
+         this.last.setNext(newNode);
+         
+      }
+      this.last = newNode;
    }
    
    public Object remove(){
